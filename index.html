@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Skeleton Website</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a>
+    <title>My Skeleton Website with Tailwind CSS</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Additional head content here -->
+</head>   
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-gray-800 text-white">
+        <nav class="container mx-auto flex justify-between items-center py-4">
+            <a href="#" class="text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#" class="text-gray-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+            <a href="#" class="text-gray-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
         </nav>
     </header>
 
-    <main>
-        <h1>Welcome to My Skeleton Website</h1>
-        <p>This is a paragraph of text to demonstrate content appearing on the page.</p>
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold">Welcome to My Skeleton Website</h1>
+        <p class="mt-4">This is a paragraph of text to demonstrate content appearing on the page, styled with Tailwind CSS.</p>
     </main>
 
-    <footer>
+    <footer class="bg-gray-800 text-white text-center py-4">
         <p>© 2023 My Skeleton Website</p>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
