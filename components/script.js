@@ -5,15 +5,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const oscillator = audioContext.createOscillator();
 
-    oscillator.type = 'square';
+    oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A4 note
 
     oscillator.connect(audioContext.destination);
     oscillator.start();
     setTimeout(() => oscillator.stop(), 2000); // Adjust duration as needed
+    
 });
- document.getElementById('playButton').addEventListener('click', function() {
-    oscillator.stop();
-});
- 
+
+var amplitude = document.getElementById("amp");
+var ampVal = document.getElementById("ampVal");
+ampVal.innerHTML = amplitude.value; // Display the default slider value
+// Update the current slider value (each time you drag the slider handle)
+amplitude.oninput = function() {
+  ampVal.innerHTML = this.value;
+}
+
+var pitch = document.getElementById("pitch");
+var pitchVal = document.getElementById("pitchVal");
+pitchVal.innerHTML = pitch.value; // Display the default slider value
+// Update the current slider value (each time you drag the slider handle)
+pitch.oninput = function() {
+  pitchVal.innerHTML = this.value;
+}
+
+var delay = document.getElementById("delay");
+var delayVal = document.getElementById("delayVal");
+delayVal.innerHTML = delay.value; // Display the default slider value
+// Update the current slider value (each time you drag the slider handle)
+delay.oninput = function() {
+  delayVal.innerHTML = this.value;
+}
+
 });
