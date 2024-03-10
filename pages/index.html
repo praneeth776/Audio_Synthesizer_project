@@ -69,6 +69,12 @@
         <button id="stopButton" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Stop Sine Wave
         </button>
+
+        <!-- <div class="mt-8">
+            <label for="frequencySlider" class="block text-sm font-medium text-gray-700 ">Frequency</label>
+            <input type="range" id="frequencySlider" min="20" max="2000" value="440" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+            <p>Frequency: <span id="frequencyValue">440</span> Hz</p>
+        </div> -->
     
         <h3>Amplitude </h3>
     
@@ -81,7 +87,7 @@
     
           <h3> Pitch </h3>
           <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="pitch">
+            <input type="range" min="0" max="300" value="50" class="slider" id="pitch">
             <p>Value: <span id="pitchVal"></span></p>
     
     
