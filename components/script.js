@@ -5,11 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const oscillator = audioContext.createOscillator();
 
-    oscillator.type = 'sine';
+    oscillator.type = 'square';
     oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A4 note
 
     oscillator.connect(audioContext.destination);
     oscillator.start();
     setTimeout(() => oscillator.stop(), 2000); // Adjust duration as needed
 });
+ document.getElementById('playButton').addEventListener('click', function() {
+    oscillator.stop();
+});
+ 
 });

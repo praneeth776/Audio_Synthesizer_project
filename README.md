@@ -6,5 +6,15 @@
 ### First time
 `` npm install ``
 - To install all the dependencies from the package.json
-``npm run build:css``
-- To build the cs files
+- Install live - server extension on VS code and use it to open the website on your browser.
+### Graph features
+- Have a graph
+- buttons/sliders for changing the signals(Ex: Amplitude change, pitch , attack, delay, sustain etc)
+- Can add multiple audio signals. (Provided by us like some basic sine waves and square waves to maybe musical notes)
+- Generate the notes.(Piano notes, Sitar)
+- Maybe add low pass filters and high pass filters
+### Approach1:
+- Pure Javascript using WebAudio API
+### Approach2:
+- Use Librosa for audio analysis and flask for web application.
+- Use matplotlib for figures/ videos(animation).
