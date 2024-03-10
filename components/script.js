@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Skeleton Website Loaded');
   // You can add more interactive elements here
+  let audioContext;
+  let oscillator;
   document.getElementById('playButton').addEventListener('click', function() {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    oscillator = audioContext.createOscillator();
 
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // A4 note
@@ -13,6 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => oscillator.stop(), 2000); // Adjust duration as needed
     
 });
+  document.getElementById('stopButton').addEventListener('click',function() {
+    if(oscillator){
+        oscillator.stop();
+        oscillator.disconnect();
+        audioContext.close();
+        oscillator = null;
+        audioContext=null;
+    }
+  });
 
 var amplitude = document.getElementById("amp");
 var ampVal = document.getElementById("ampVal");

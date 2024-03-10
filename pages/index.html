@@ -61,34 +61,39 @@
     <main class="container mx-auto px-4 py-8">
         <h1 class="text-2xl font-bold">Welcome to My Skeleton Website</h1>
         <p class="mt-4">This is a paragraph of text to demonstrate content appearing on the page, styled with Tailwind CSS.</p>
+
+        <button id="playButton" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Play Sine Wave
+        </button>
+
+        <button id="stopButton" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Stop Sine Wave
+        </button>
+    
+        <h3>Amplitude </h3>
+    
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="amp">
+            <p>Value: <span id="ampVal"></span></p>
+    
+    
+          </div>
+    
+          <h3> Pitch </h3>
+          <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="pitch">
+            <p>Value: <span id="pitchVal"></span></p>
+    
+    
+          </div>
+        
+          <h3> Delay</h3>
+          <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="delay">
+            <p>Value: <span id="delayVal"></span></p>
+          </div>
     </main>
 
-    <button id="playButton" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Play Sine Wave
-    </button>
-
-    <h3>Amplitude </h3>
-
-    <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="50" class="slider" id="amp">
-        <p>Value: <span id="ampVal"></span></p>
-
-
-      </div>
-
-      <h3> Pitch </h3>
-      <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="50" class="slider" id="pitch">
-        <p>Value: <span id="pitchVal"></span></p>
-
-
-      </div>
-    
-      <h3> Delay</h3>
-      <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="50" class="slider" id="delay">
-        <p>Value: <span id="delayVal"></span></p>
-      </div>
     
     
     <footer class="bg-gray-800 text-white text-center py-4">
@@ -97,6 +102,6 @@
 
   
 
-    <script src="script.js"></script>
+    <script src="../components/script.js"></script>
 </body>
 </html>
