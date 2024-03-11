@@ -1,5 +1,5 @@
 
-# Minimalistic Music Composition Tool
+# Audio Synthesizer project
 ## Project IDEA
 - Build basic music tools and generate our own music using these tools.
 ## How to run the website on local
@@ -15,6 +15,7 @@
 - Maybe add low pass filters and high pass filters
 ### Approach1:
 - Pure Javascript using WebAudio API
+- Add a dropdown box to select the input files.
 ### Approach2:
 - Use Librosa for audio analysis and flask for web application.
 - Use matplotlib for figures/ videos(animation).
