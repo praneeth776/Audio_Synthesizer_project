@@ -14,6 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
   var decayTime = 0.3;
   var vibratoAmount = 0.5
   var vibratoSpeed = 10
+
+  var waveform = 'sine'
+
+ 
+
+  var selector = document.getElementById('waveforms');
+
+  selector.oninput = function() {
+  
+    waveform = selector.value;
+    console.logs("selected Wave Form" + waveform);
+  }
+
+  
+ 
+
+
+
   document.getElementById('playButton').addEventListener('click', function() {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -28,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     oscillator.connect(gainNode);
 
 
-    oscillator.type = 'sine';
+    oscillator.type = waveform;
     oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime); // A4 note
     
      
