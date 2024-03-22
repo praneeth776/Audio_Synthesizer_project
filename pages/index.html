@@ -45,7 +45,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Skeleton Website with Tailwind CSS</title>
+    <title>Audio Synthesizer Project</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Additional head content here -->
 </head>   
@@ -59,8 +59,8 @@
     </header>
 
     <main class="container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold">Welcome to My Skeleton Website</h1>
-        <p class="mt-4">This is a paragraph of text to demonstrate content appearing on the page, styled with Tailwind CSS.</p>
+        <h1 class="text-2xl font-bold">Audio Synthesizer Project</h1>
+        <p class="mt-4"></p>
 
 
         <select name="waveforms" id="waveforms">
@@ -77,11 +77,17 @@
             Stop 
         </button>
 
-        <!-- <div class="mt-8">
-            <label for="frequencySlider" class="block text-sm font-medium text-gray-700 ">Frequency</label>
-            <input type="range" id="frequencySlider" min="20" max="2000" value="440" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+        <body class="flex justify-center items-center min-h-screen bg-gray-100">
+            <!-- Canvas element -->
+            <canvas id="canvas" class="border-2 border-gray-200 px-4 py-2" width="500" height="300" ></canvas>
+            <script src="../components/graph.js"></script>
+        </body>
+
+        <div class="mt-8">
+            <label for="frequencySlider" class="block text-sm font-medium text-gray-700 w-300px">Frequency</label>
+            <input type="range" id="frequencySlider" min="0" max="300" value="440" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
             <p>Frequency: <span id="frequencyValue">440</span> Hz</p>
-        </div> -->
+        </div>
     
         <h3>Amplitude </h3>
     
@@ -94,7 +100,7 @@
     
           <h3> Pitch </h3>
           <div class="slidecontainer">
-            <input type="range" min="0" max="300" value="50" class="slider" id="pitch">
+            <input type="range" min="0" max="300" value="150" class="slider" id="pitch">
             <p>Value: <span id="pitchVal"></span></p>
     
     
@@ -135,6 +141,7 @@
             <input type="range" min="1" max="100" value="50" class="slider" id="vibSpeed">
             <p>Value: <span id="vibSpeedVal"></span></p>
           </div>
+
     </main>
 
     

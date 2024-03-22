@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let oscillator;
   let lfo;
   let lfoGain;
+  const canvas = document.getElementById('Canvas')
   var frequency = 440;
   var gainValue = 0.2;
 
@@ -38,6 +39,58 @@ document.addEventListener('DOMContentLoaded', () => {
    
 
     oscillator = audioContext.createOscillator();
+    let analyser = audioContext.createAnalyser();
+    oscillator.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+function visualize() {
+    const WIDTH = canvas.width;
+    const HEIGHT = canvas.height;
+    analyser.fftSize = 2048; // Must be a power of 2 Range - [32, 32768]
+    const bufferLength = analyser.fftSize;
+    const dataArray = new Uint8Array(bufferLength);
+
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+    const draw = () => {
+        requestAnimationFrame(draw);
+
+        analyser.getByteTimeDomainData(dataArray);
+
+        ctx.fillStyle = 'rgb(200, 200, 200)';
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgb(0, 0, 0)';
+
+        ctx.beginPath();
+
+        let sliceWidth = WIDTH * 1.0 / bufferLength;
+        let x = 0;
+
+        for(let i = 0; i < bufferLength; i++) {
+
+            let v = dataArray[i] / 128.0; // byte / 2 || 256/2
+            let y = v * HEIGHT/2;
+
+            if(i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+
+            x += sliceWidth;
+        }
+
+        ctx.lineTo(canvas.width, canvas.height/2);
+        ctx.stroke();
+    };
+
+    draw();
+}
     gainNode = audioContext.createGain();
 
     lfo = audioContext.createOscillator();
@@ -70,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     oscillator.connect(audioContext.destination);
     oscillator.start();
+    visualize();
     gainNode.connect(audioContext.destination);
 
     setTimeout(() => oscillator.stop(), 2000); // Adjust duration as needed
@@ -86,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Stopped the sine wave.');
     }
   });
+  
 
 var amplitude = document.getElementById("amp");
 var ampVal = document.getElementById("ampVal");
@@ -167,9 +222,8 @@ var vibSpeedVal = document.getElementById("vibSpeedVal");
 vibSpeedVal.innerHTML = vibSpeed.value; // Display the default slider value
 // Update the current slider value (each time you drag the slider handle)
 vibSpeed.oninput = function() {
-  vibSpeedVal.innerHTML = this.value;
-  vibratoSpeed = (this.value/100)*vibratoSpeed;
-  console.log('vibSpeed changed to '+ vibratoSpeed);
-}
+    vibSpeedVal.innerHTML = this.value;
+    vibratoSpeed = (this.value/100)*vibratoSpeed;
+    console.log('vibSpeed changed to '+ vibratoSpeed);}
 
 });
