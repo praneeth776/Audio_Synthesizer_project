@@ -60,11 +60,11 @@ function visualize() {
 
         analyser.getByteTimeDomainData(dataArray);
 
-        ctx.fillStyle = 'rgb(200, 200, 200)';
+        ctx.fillStyle = 'rgb(255, 255, 255)';
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
         ctx.lineWidth = 2;
-        ctx.strokeStyle = 'rgb(0, 0, 0)';
+        ctx.strokeStyle = 'rgb(0, 0, 100)';
 
         ctx.beginPath();
 

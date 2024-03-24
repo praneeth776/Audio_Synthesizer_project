@@ -47,6 +47,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Synthesizer Project</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="../static/graphscript.js" ></script>
     <!-- Additional head content here -->
 </head>   
   <body class="bg-gray-100 text-gray-800 font-sans">
@@ -70,6 +72,17 @@
                 <option value="triangle">Triangle</option>
               </select>
           </div>
+
+          <body>
+            <form id="upload_form" enctype="multipart/form-data"> <!-- Set the enctype to "multipart/form-data" for file uploads -->
+                <input type="file" id="audio_file" name="audio_file" accept=".wav">
+                <button type="button" id="plot_button" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Plot Waveform
+                </button> <!-- Change the button type to "button" -->
+            </form>
+        <canvas id="plot_canvas" class="border-2 border-gray-100 px-4 py-2 bg-white" width="600" height="400" ></canvas>
+        <!-- <script src="../static/graphscript.js" ></script> -->
+        </body>
   
           <div class="flex space-x-4 mb-4">
               <button id="playButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">
@@ -83,17 +96,11 @@
 
         <body class="flex justify-center items-center min-h-screen bg-gray-100">
             <!-- Canvas element -->
-            <canvas id="canvas" class="border-2 border-gray-200 px-4 py-2" width="500" height="300" ></canvas>
-            <script src="../components/graph.js"></script>
+            <canvas id="canvas" class="border-2 border-gray-200 px-4 py-2 bg-white" width="500" height="300" ></canvas>
+            <script src="../static/script.js"></script>
         </body>
         <!-- Sliders Container -->
 <div class="flex flex-wrap -mx-2 mb-4">
-  <!-- Frequency Slider -->
-  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
-      <label for="frequencySlider" class="block text-sm font-medium text-gray-700">Frequency</label>
-      <input type="range" id="frequencySlider" min="0" max="300" value="440" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-      <p class="text-xs mt-1">Frequency: <span id="frequencyValue">440</span> Hz</p>
-  </div>
 
   <!-- Amplitude Slider -->
   <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
@@ -152,13 +159,7 @@
   </div>
 </div>
 
-<div class="bg-white shadow-md rounded-md p-4">
-  <h2 class="text-lg font-semibold mb-2">Upload a File</h2>
-  <form id="uploadForm" enctype="multipart/form-data" class="flex items-center space-x-4">
-      <input type="file" id="fileUpload" name="file" class="border border-gray-300 rounded-md p-2">
-      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">Upload File</button>
-  </form>
-</div>
+
 
   </main>
   
@@ -166,6 +167,6 @@
       <p>Audio Synthesizer Website</p>
   </footer>
 
-  <script src="../components/script.js"></script>
+  <script src="../static/script.js"></script>
 </body>
 </html>
