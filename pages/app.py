@@ -3,7 +3,7 @@ import matplotlib
 # Set the backend to a non-GUI one
 matplotlib.use('Agg')
 
-from graph import playAudio
+from graph import plotAudioFile
 from flask import Flask, render_template, request, Response, jsonify
 from glob import glob
 import librosa
@@ -36,21 +36,11 @@ def plot_audio():
     audio_file = request.files['audio_file']
     
     # Load the audio file
-    y, sr = librosa.load(audio_file)
+    # y, sr = librosa.load(audio_file)
     
-    # Plot the waveform
-    plt.figure(figsize=(6, 4)) # (width,height)
-    pd.Series(y).plot()  # Using pd.Series(y).plot() to plot the graph
-    plt.xlabel('Time (samples)')
-    plt.ylabel('Amplitude')
-    plt.title('Waveform')
-    
-    # Convert plot to base64 string
-    img = io.BytesIO()
-    plt.savefig(img, format='png')
-    img.seek(0)
-    plot_base64 = base64.b64encode(img.getvalue()).decode()
-    plt.close()
+    # # Plot the waveform
+
+    plot_base64 = plotAudioFile(audio_file=audio_file)
 
     return jsonify({'plot_base64': plot_base64})
 

@@ -34,6 +34,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   document.getElementById('playButton').addEventListener('click', function() {
+
+    function visualize(analyser) {
+        console.log('Visualise function called');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const WIDTH = canvas.width;
+        const HEIGHT = canvas.height;
+        analyser.fftSize = 2048; // Must be a power of 2 Range - [32, 32768]
+        const bufferLength = analyser.fftSize;
+        const dataArray = new Uint8Array(bufferLength);
+    
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+    
+        const draw = () => {
+            requestAnimationFrame(draw);
+    
+            analyser.getByteTimeDomainData(dataArray);
+    
+            ctx.fillStyle = 'rgb(255, 255, 255)';
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'rgb(0, 255, 0)';
+    
+            ctx.beginPath();
+    
+            let sliceWidth = WIDTH * 1.0 / bufferLength;
+            let x = 0;
+    
+            for(let i = 0; i < bufferLength; i++) {
+                let v = dataArray[i] / 128.0; // byte / 2 || 256/2
+                let y = v * HEIGHT/2;
+    
+                if(i === 0) {
+                  ctx.moveTo(x, y);
+                } else {
+                  ctx.lineTo(x, y);
+                }
+    
+                x += sliceWidth;
+            }
+    
+            ctx.lineTo(canvas.width, canvas.height/2);
+            ctx.stroke();
+        };
+    
+        draw();
+    }
+    function playAudio(audioElement) {
+        if (!audioElement) {
+            console.error('Audio element is null.');
+            return;
+        }
+    
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioContext.createMediaElementSource(audioElement);
+        const analyser = audioContext.createAnalyser();
+    
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+    
+        audioElement.play();
+    
+        visualize(analyser); // Start visualizing the waveform
+    }
+
+    //audioElement = document.getElementById('audio_file').files[0];
+    var audioElement = new Audio();
+    audioElement.src = URL.createObjectURL(document.getElementById('audio_file').files[0]);
+    playAudio(audioElement);
+    if (!audioElement) {
+
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
    
@@ -46,51 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
-function visualize() {
-    const WIDTH = canvas.width;
-    const HEIGHT = canvas.height;
-    analyser.fftSize = 2048; // Must be a power of 2 Range - [32, 32768]
-    const bufferLength = analyser.fftSize;
-    const dataArray = new Uint8Array(bufferLength);
 
-    ctx.clearRect(0, 0, WIDTH, HEIGHT);
-
-    const draw = () => {
-        requestAnimationFrame(draw);
-
-        analyser.getByteTimeDomainData(dataArray);
-
-        ctx.fillStyle = 'rgb(255, 255, 255)';
-        ctx.fillRect(0, 0, WIDTH, HEIGHT);
-
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = 'rgb(0, 0, 100)';
-
-        ctx.beginPath();
-
-        let sliceWidth = WIDTH * 1.0 / bufferLength;
-        let x = 0;
-
-        for(let i = 0; i < bufferLength; i++) {
-
-            let v = dataArray[i] / 128.0; // byte / 2 || 256/2
-            let y = v * HEIGHT/2;
-
-            if(i === 0) {
-              ctx.moveTo(x, y);
-            } else {
-              ctx.lineTo(x, y);
-            }
-
-            x += sliceWidth;
-        }
-
-        ctx.lineTo(canvas.width, canvas.height/2);
-        ctx.stroke();
-    };
-
-    draw();
-}
     gainNode = audioContext.createGain();
 
     lfo = audioContext.createOscillator();
@@ -128,6 +156,7 @@ function visualize() {
 
     setTimeout(() => oscillator.stop(), 2000); // Adjust duration as needed
     console.log("Sine wave generated with frequency "+frequency);
+    }
     
 });
   document.getElementById('stopButton').addEventListener('click',function() {

@@ -40,10 +40,6 @@ def plotAudioFile(audio_file):
     plt.close()
     return plot_base64
 
-def ftgraph(audio_file):
-    y, sr = librosa.load(audio_file)
-    D = librosa.stft(y)
-    S_db = librosa.amplitude_to_db(np.abs(D), ref = np.max)
 
 #playAudio(audio_file)
 
