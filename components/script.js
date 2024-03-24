@@ -225,5 +225,21 @@ vibSpeed.oninput = function() {
     vibSpeedVal.innerHTML = this.value;
     vibratoSpeed = (this.value/100)*vibratoSpeed;
     console.log('vibSpeed changed to '+ vibratoSpeed);}
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent default form submission
+  
+      const formData = new FormData();
+const fileInput = document.getElementById('fileUpload');
+formData.append('file', fileInput.files[0]);
 
+fetch('http://localhost:3000/upload', {
+    method: 'POST',
+    body: formData,
+})
+.then(response => response.json())
+.then(data => console.log('Success:', data))
+.catch(error => console.error('Error:', error));
+  });
+   
+     
 });

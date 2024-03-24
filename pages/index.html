@@ -49,109 +49,123 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Additional head content here -->
 </head>   
-<body class="bg-gray-100 text-gray-800">
-    <header class="bg-gray-800 text-white">
-        <nav class="container mx-auto flex justify-between items-center py-4">
-            <a href="#" class="text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="#" class="text-gray-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
-            <a href="#" class="text-gray-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-        </nav>
-    </header>
-
-    <main class="container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold">Audio Synthesizer Project</h1>
-        <p class="mt-4"></p>
-
-
-        <select name="waveforms" id="waveforms">
-          <option value="sine">Sine</option>
-          <option value="square">Square</option>
-          <option value="sawtooth">Sawtooth</option>
-          <option value="triangle">Triangle</option>
-        </select>
-        <button id="playButton" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Play 
-        </button>
-
-        <button id="stopButton" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Stop 
-        </button>
+  <body class="bg-gray-100 text-gray-800 font-sans">
+  
+      <header class="bg-gray-800">
+          <nav class="container mx-auto flex justify-between items-center py-4 text-white">
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">Home</a>
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">About</a>
+              <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">Contact</a>
+          </nav>
+      </header>
+  
+      <main class="container mx-auto px-4 py-8">
+          <h1 class="text-2xl font-bold mb-4">Audio Synthesizer Project</h1>
+  
+          <div class="mb-4">
+              <select name="waveforms" id="waveforms" class="border border-gray-300 rounded-md p-2">
+                <option value="sine">Sine</option>
+                <option value="square">Square</option>
+                <option value="sawtooth">Sawtooth</option>
+                <option value="triangle">Triangle</option>
+              </select>
+          </div>
+  
+          <div class="flex space-x-4 mb-4">
+              <button id="playButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">
+                  Play 
+              </button>
+  
+              <button id="stopButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">
+                  Stop 
+              </button>
+          </div>
 
         <body class="flex justify-center items-center min-h-screen bg-gray-100">
             <!-- Canvas element -->
             <canvas id="canvas" class="border-2 border-gray-200 px-4 py-2" width="500" height="300" ></canvas>
             <script src="../components/graph.js"></script>
         </body>
+        <!-- Sliders Container -->
+<div class="flex flex-wrap -mx-2 mb-4">
+  <!-- Frequency Slider -->
+  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="frequencySlider" class="block text-sm font-medium text-gray-700">Frequency</label>
+      <input type="range" id="frequencySlider" min="0" max="300" value="440" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Frequency: <span id="frequencyValue">440</span> Hz</p>
+  </div>
 
-        <div class="mt-8">
-            <label for="frequencySlider" class="block text-sm font-medium text-gray-700 w-300px">Frequency</label>
-            <input type="range" id="frequencySlider" min="0" max="300" value="440" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-            <p>Frequency: <span id="frequencyValue">440</span> Hz</p>
-        </div>
-    
-        <h3>Amplitude </h3>
-    
-        <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="amp">
-            <p>Value: <span id="ampVal"></span></p>
-    
-    
-          </div>
-    
-          <h3> Pitch </h3>
-          <div class="slidecontainer">
-            <input type="range" min="0" max="300" value="150" class="slider" id="pitch">
-            <p>Value: <span id="pitchVal"></span></p>
-    
-    
-          </div>
-        
-          <h3> Attack</h3>
-          <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="attack">
-            <p>Value: <span id="attackVal"></span></p>
-          </div>
+  <!-- Amplitude Slider -->
+  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="amp" class="block text-sm font-medium text-gray-700">Amplitude</label>
+      <input type="range" id="amp" min="1" max="100" value="50" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Amplitude: <span id="ampVal">50</span></p>
+  </div>
 
-          <h3> Decay</h3>
-          <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="decay">
-            <p>Value: <span id="decayVal"></span></p>
-          </div>
+  <!-- Pitch Slider -->
+  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="pitch" class="block text-sm font-medium text-gray-700">Pitch</label>
+      <input type="range" id="pitch" min="0" max="300" value="150" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Pitch: <span id="pitchVal">150</span></p>
+  </div>
 
-          <h3> Sustain</h3>
-          <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="sustain">
-            <p>Value: <span id="sustainVal"></span></p>
-          </div>
+  <!-- Attack Slider -->
+  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="attack" class="block text-sm font-medium text-gray-700">Attack</label>
+      <input type="range" id="attack" min="1" max="100" value="50" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Attack: <span id="attackVal">50</span></p>
+  </div>
 
-          <h3> Release</h3>
-          <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="release">
-            <p>Value: <span id="releaseVal"></span></p>
-          </div>
+  <!-- Decay Slider -->
+  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="decay" class="block text-sm font-medium text-gray-700">Decay</label>
+      <input type="range" id="decay" min="1" max="100" value="50" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Decay: <span id="decayVal">50</span></p>
+  </div>
 
-          <h3> Vibrato Amount</h3>
-          <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="vibAmount">
-            <p>Value: <span id="vibAmountVal"></span></p>
-          </div>
+  <!-- Sustain Slider -->
+  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="sustain" class="block text-sm font-medium text-gray-700">Sustain</label>
+      <input type="range" id="sustain" min="1" max="100" value="50" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Sustain: <span id="sustainVal">50</span></p>
+  </div>
 
-          <h3> Vibratio Speed</h3>
-          <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="vibSpeed">
-            <p>Value: <span id="vibSpeedVal"></span></p>
-          </div>
+  <!-- Release Slider -->
+  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="release" class="block text-sm font-medium text-gray-700">Release</label>
+      <input type="range" id="release" min="1" max="100" value="50" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Release: <span id="releaseVal">50</span></p>
+  </div>
 
-    </main>
+    <!-- Vibrato Amount Slider -->
+    <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="vibAmount" class="block text-sm font-medium text-gray-700">Vibrato Amount</label>
+      <input type="range" id="vibAmount" min="1" max="100" value="50" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Vibrato Amount: <span id="vibAmountVal">50</span></p>
+  </div>
 
-    
-    
-    <footer class="bg-gray-800 text-white text-center py-4">
-        <p>© 2023 My Skeleton Website</p>
-    </footer>
+  <!-- Vibrato Speed Slider -->
+  <div class="px-2 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6">
+      <label for="vibSpeed" class="block text-sm font-medium text-gray-700">Vibrato Speed</label>
+      <input type="range" id="vibSpeed" min="1" max="100" value="50" class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+      <p class="text-xs mt-1">Vibrato Speed: <span id="vibSpeedVal">50</span></p>
+  </div>
+</div>
 
+<div class="bg-white shadow-md rounded-md p-4">
+  <h2 class="text-lg font-semibold mb-2">Upload a File</h2>
+  <form id="uploadForm" enctype="multipart/form-data" class="flex items-center space-x-4">
+      <input type="file" id="fileUpload" name="file" class="border border-gray-300 rounded-md p-2">
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">Upload File</button>
+  </form>
+</div>
+
+  </main>
   
+  <footer class="bg-gray-800 text-white text-center py-4">
+      <p>Audio Synthesizer Website</p>
+  </footer>
 
-    <script src="../components/script.js"></script>
+  <script src="../components/script.js"></script>
 </body>
 </html>
