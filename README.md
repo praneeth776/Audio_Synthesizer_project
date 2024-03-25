@@ -5,13 +5,13 @@
 
 ## How to run the website on local
 ### First time
-To install the python dependencies: 
+- To install the python dependencies: 
 ``pip install -r requirements.txt``
-To install the other dependencies:
+- To install the other dependencies:
 ``npm install``
-To run:
-make sure you're in the MMCT/pages directory and type ``python app.py``
-it should show ``Server running on http://localhost:9000`` copy the link and visit it in your web browser
+### To Run
+- make sure you're in the MMCT/pages directory and type ``python app.py``
+- it should show ``Server running on http://localhost:9000`` copy the link and visit it in your web browser
 
 ### Project features
 - Options to play sign, sawtooth, rectangle, triangle waves
